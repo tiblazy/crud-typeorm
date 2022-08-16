@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { IUserUpdate, IShowUserUpdate } from "../../interfaces/user.interface";
+import { IUserUpdate, IShowUser } from "../../interfaces/user.interface";
 import bcrypt from "bcrypt";
 
 const userUpdateService = async ({
@@ -25,7 +25,7 @@ const userUpdateService = async ({
 
   await userRepository.update(user!.id, { ...user, updated_at });
 
-  const showUser: IShowUserUpdate = user! ? user : {};
+  const showUser: IShowUser = user! ? user : {};
   delete showUser.password;
 
   return showUser;

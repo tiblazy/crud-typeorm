@@ -7,8 +7,6 @@ export interface IUserCreate {
   age: number;
 }
 
-export interface IShowUserCreate extends Partial<User> {}
-
 export interface IUserUpdate {
   id: string;
   name?: string;
@@ -17,4 +15,4 @@ export interface IUserUpdate {
   age?: number;
 }
 
-export interface IShowUserUpdate extends Partial<User> {}
+export interface IShowUser extends Partial<User> {}

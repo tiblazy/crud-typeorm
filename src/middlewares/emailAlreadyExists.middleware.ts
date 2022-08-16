@@ -16,8 +16,7 @@ const emailAlreadyExistsMiddleware = async (
   const alreadyExists = users.find((user) => user.email === email);
 
   if (alreadyExists) {
-    console.log(alreadyExists);
-    return res.status(400).json({ message: "Email already in use" });
+    return res.status(400).json({ message: "Email in use" });
   }
 
   next();
