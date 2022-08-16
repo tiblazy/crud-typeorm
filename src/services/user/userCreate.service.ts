@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { IUserCreate } from "../../interfaces/user.interface";
+import { IUserCreate, IShowUserCreate } from "../../interfaces/user.interface";
 import bcrypt from "bcrypt";
 
 const userCreateService = async ({
@@ -12,7 +12,6 @@ const userCreateService = async ({
   const userRepository = AppDataSource.getRepository(User);
   const users = await userRepository.find();
 
-  //   usar for in
   const user = new User();
   user.name = name;
   user.email = email;
@@ -24,7 +23,10 @@ const userCreateService = async ({
   userRepository.create(user);
   await userRepository.save(user);
 
-  return user;
+  const showUser: IShowUserCreate = user;
+  delete showUser.password;
+
+  return showUser;
 };
 
 export default userCreateService;

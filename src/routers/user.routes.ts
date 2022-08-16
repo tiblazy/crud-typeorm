@@ -4,11 +4,12 @@ const routes = Router();
 
 import UserController from "../controllers/user.controller";
 
-// middlewares
+import emailAlreadyExistsMiddleware from "../middlewares/emailAlreadyExists.middleware";
 
 routes.post(
   "",
   // schemaMiddleware,
+  emailAlreadyExistsMiddleware,
   UserController.create
 );
 

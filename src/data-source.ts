@@ -25,3 +25,19 @@ export const AppDataSource =
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
       });
+
+// AppDataSource.initialize()
+//   .then(() => console.log("Data Source Initialized"))
+//   .catch((err) => console.log("Error Data Source", err));
+
+/* Explicando código abaixo:
+  * Estamos utilizando um ternário para controlar a configuração
+    do DataSource do typeorm.
+
+  * Utilizamos uma variavel de ambiente para controlar isso pois
+    para conseguir manipular mesmo em um ambiente de produção.
+
+  * O banco em que fazemos os testes é o SQLite e precisamos 
+    das configurações pré definidas abaixo para que os testes executem
+    de forma correta.
+*/

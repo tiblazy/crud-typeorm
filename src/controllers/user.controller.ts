@@ -49,7 +49,7 @@ class UserController {
 
       const user = await userUpdateService({ id, name, email, password, age });
 
-      return res.status(200).json(user);
+      return res.status(200).json({ message: "User updated", user });
     } catch (error) {
       ErrorController.default(error, res);
     }
@@ -58,11 +58,10 @@ class UserController {
   static async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const { name, email, password, age } = req.body;
 
       const user = await userDeleteService(id);
 
-      return res.status(200).json(user);
+      return res.status(200).json({ message: "User deleted", user });
     } catch (error) {
       ErrorController.default(error, res);
     }

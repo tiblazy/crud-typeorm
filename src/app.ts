@@ -7,6 +7,6 @@ app.use(express.json());
 
 app.use("/users", userRoutes);
 
-app.listen(3000);
+// app.listen(3000);
 
 export default app;
