@@ -16,7 +16,7 @@ class UserController {
 
       return res.status(201).json(user);
     } catch (error) {
-      ErrorController.default(error, res);
+      ErrorController.default(error, res, 400);
     }
   }
 

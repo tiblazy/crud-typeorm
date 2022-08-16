@@ -8,14 +8,30 @@ import UserController from "../controllers/user.controller";
 
 routes.post(
   "",
-  // schema,
+  // schemaMiddleware,
   UserController.create
 );
 
-routes.get("", UserController.list);
-routes.get("/:id", UserController.index);
+routes.get(
+  "",
+  // schemaMiddleware,
+  UserController.list
+);
+routes.get(
+  "/:id",
+  // schemaMiddleware,
+  UserController.index
+);
 
-routes.patch("/:id", UserController.update);
-routes.delete("/:id", UserController.delete);
+routes.patch(
+  "/:id",
+  // schemaMiddleware,
+  UserController.update
+);
+routes.delete(
+  "/:id",
+  // schemaMiddleware,
+  UserController.delete
+);
 
 export default routes;
