@@ -5,10 +5,11 @@ const routes = Router();
 import UserController from "../controllers/user.controller";
 
 import emailAlreadyExistsMiddleware from "../middlewares/emailAlreadyExists.middleware";
+import { userCreateSchema, validateCreateSchema } from "../validations/yup";
 
 routes.post(
   "",
-  // schemaMiddleware,
+  validateCreateSchema(userCreateSchema),
   emailAlreadyExistsMiddleware,
   UserController.create
 );

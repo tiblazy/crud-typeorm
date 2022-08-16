@@ -11,7 +11,7 @@ import ErrorController from "./error.controller";
 class UserController {
   static async create(req: Request, res: Response) {
     try {
-      const { name, email, password, age } = req.body;
+      const { name, email, password, age } = req.validateUser;
       const user = await userCreateService({ name, email, password, age });
 
       return res.status(201).json(user);
@@ -61,7 +61,7 @@ class UserController {
 
       const user = await userDeleteService(id);
 
-      return res.status(200).json({ message: "User deleted", user });
+      return res.status(200).json({ message: "User deleted" });
     } catch (error) {
       ErrorController.default(error, res);
     }
