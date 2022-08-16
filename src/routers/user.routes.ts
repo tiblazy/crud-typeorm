@@ -5,35 +5,30 @@ const routes = Router();
 import UserController from "../controllers/user.controller";
 
 import emailAlreadyExistsMiddleware from "../middlewares/emailAlreadyExists.middleware";
-import { userCreateSchema, validateCreateSchema } from "../validations/yup";
+import {
+  userCreateSchema,
+  validateUserCreate,
+} from "../middlewares/userCreateSchema.middleware";
+import {
+  userUpdateSchema,
+  validateUserUpdate,
+} from "../middlewares/userUpdateSchema.middleware";
 
 routes.post(
   "",
-  validateCreateSchema(userCreateSchema),
+  validateUserCreate(userCreateSchema),
   emailAlreadyExistsMiddleware,
   UserController.create
 );
 
-routes.get(
-  "",
-  // schemaMiddleware,
-  UserController.list
-);
-routes.get(
-  "/:id",
-  // schemaMiddleware,
-  UserController.index
-);
+routes.get("", UserController.list);
+routes.get("/:id", UserController.index);
 
 routes.patch(
   "/:id",
-  // schemaMiddleware,
+  validateUserUpdate(userUpdateSchema),
   UserController.update
 );
-routes.delete(
-  "/:id",
-  // schemaMiddleware,
-  UserController.delete
-);
+routes.delete("/:id", UserController.delete);
 
 export default routes;

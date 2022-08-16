@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entity";
-import ErrorController from "../controllers/error.controller";
 
 const emailAlreadyExistsMiddleware = async (
   req: Request,

@@ -25,3 +25,9 @@ export const AppDataSource =
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
       });
+
+if (process.env.NODE_ENV !== "test") {
+  AppDataSource.initialize()
+    .then(() => console.log("Data Source Initialized"))
+    .catch((err) => console.log("Error Data Source", err));
+}

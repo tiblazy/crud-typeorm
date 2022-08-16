@@ -16,7 +16,7 @@ export const userCreateSchema: SchemaOf<IUserCreate> = yup.object().shape({
   age: yup.number().required(),
 });
 
-export const validateCreateSchema =
+export const validateUserCreate =
   (schema: SchemaOf<IUserCreate>) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -28,7 +28,7 @@ export const validateCreateSchema =
           stripUnknown: true,
         });
 
-        req.validateUser = validate;
+        // req.userCreate = validate;
 
         next();
       } catch (error) {
