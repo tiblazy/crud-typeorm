@@ -1,11 +1,13 @@
 import { Response } from "express";
 
 class ErrorController {
-  static default = (error: any, res: Response, statusCode?: number) => {
+  static default = (res: Response, error: any, statusCode?: number) => {
     if (error instanceof Error) {
+      const { name, message } = error;
+
       return res.status(statusCode || 404).send({
-        error: error.name,
-        message: error.message,
+        error: name,
+        message,
       });
     }
   };

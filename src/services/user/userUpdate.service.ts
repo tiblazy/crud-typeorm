@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { IUserUpdate, IShowUser } from "../../interfaces/user.interface";
+import { IUserUpdate, IShowUser } from "../../interfaces/user/user.interface";
 import bcrypt from "bcrypt";
 
 const userUpdateService = async ({
@@ -14,18 +14,23 @@ const userUpdateService = async ({
   const users = await userRepository.find();
 
   const user = users.find((user) => user.id === id);
-  const updated_at = new Date();
+  const update: IUserUpdate = {
+    id,
+    name: name ? name : user!.name,
+    email: email ? email : user!.email,
+    age: age ? age : user!.age,
+    password: password ? password : user!.password,
+  };
 
-  name ? (user!.name = name) : user!.name;
-  email ? (user!.email = email) : user!.email;
-  age ? (user!.age = age) : user!.age;
+  const userUpdate = Object.assign(user!, update);
+
   password && !bcrypt.compareSync(password, user!.password)
     ? (user!.password = bcrypt.hashSync(password, 10))
     : user!.password;
 
-  await userRepository.update(user!.id, { ...user, updated_at });
+  await userRepository.update(user!.id, { ...userUpdate });
 
-  const showUser: IShowUser = user! ? user : {};
+  const showUser: IShowUser = user!;
   delete showUser.password;
 
   return showUser;

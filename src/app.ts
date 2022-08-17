@@ -1,7 +1,8 @@
+// import "reflect-metadata";
 import express from "express";
 import "dotenv/config";
 
-import userRoutes from "./routers/user.routes";
+import userRoutes from "./routers/user/user.routes";
 
 const app = express();
 app.use(express.json());

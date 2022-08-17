@@ -3,8 +3,8 @@ import * as yup from "yup";
 import bcrypt from "bcrypt";
 
 import { SchemaOf } from "yup";
-import { IUserUpdate } from "../interfaces/user.interface";
-import ErrorController from "../controllers/error.controller";
+import { IUserUpdate } from "../../../interfaces/user/user.interface";
+import ErrorController from "../../../controllers/response/error.controller";
 
 export const userUpdateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
   id: yup.string().required(),
@@ -16,7 +16,7 @@ export const userUpdateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
   age: yup.number(),
 });
 
-export const validateUserUpdate =
+export const validateUserUpdateMiddleware =
   (schema: SchemaOf<IUserUpdate>) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -32,11 +32,11 @@ export const validateUserUpdate =
           }
         );
 
-        // req.userUpdate = validate;
+        req.userUpdate = validate;
 
         next();
       } catch (error) {
-        ErrorController.default(error, res, 400);
+        ErrorController.default(res, error, 400);
       }
     } catch (error) {
       next(error);
