@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
+import { IShowUser } from "../../interfaces/user/user.interface";
 
 const userIndexService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -10,7 +11,10 @@ const userIndexService = async (id: string) => {
     throw new Error("User not found");
   }
 
-  return user;
+  const showUser: IShowUser = user;
+  delete showUser.password;
+
+  return showUser;
 };
 
 export default userIndexService;

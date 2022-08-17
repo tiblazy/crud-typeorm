@@ -1,8 +1,12 @@
 import { Response } from "express";
 
 class SuccessController {
-  static default = (res: Response, object: object, statusCode?: number) => {
-    return res.status(statusCode || 200).send(object);
+  static default = (
+    res: Response,
+    object: object,
+    statusCode: number = 200
+  ) => {
+    return res.status(statusCode).send(object);
   };
 
   static message = (res: Response, message: string, object?: object) => {

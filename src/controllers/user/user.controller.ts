@@ -6,14 +6,13 @@ import userIndexService from "../../services/user/userIndex.service";
 import userUpdateService from "../../services/user/userUpdate.service";
 import userDeleteService from "../../services/user/userDelete.service";
 
-import SuccessController from "../response/sucess.controller";
-import ErrorController from "../response/error.controller";
+import SuccessController from "../res/sucess.controller";
+import ErrorController from "../res/error.controller";
 
 class UserController {
   static async create(req: Request, res: Response) {
     try {
       // const userData = req.body;
-      
       const userData = req.userCreate;
       const user = await userCreateService(userData);
 

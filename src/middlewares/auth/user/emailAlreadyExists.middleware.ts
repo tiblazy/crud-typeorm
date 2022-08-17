@@ -7,8 +7,8 @@ const emailAlreadyExistsMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  // const { email } = req.userCreate;
-  const { email } = req.body;
+  const { email } = req.userCreate;
+  // const { email } = req.body;
 
   const userRepository = AppDataSource.getRepository(User);
   const users = await userRepository.find();

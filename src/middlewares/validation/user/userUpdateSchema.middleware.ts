@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 import { SchemaOf } from "yup";
 import { IUserUpdate } from "../../../interfaces/user/user.interface";
-import ErrorController from "../../../controllers/response/error.controller";
+import ErrorController from "../../../controllers/res/error.controller";
 
 export const userUpdateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
   id: yup.string().required(),
